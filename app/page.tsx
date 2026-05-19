@@ -1,59 +1,46 @@
 import Link from "next/link";
-import { EventCard } from "@/components/cards/event-card";
-import { MerchCard } from "@/components/cards/merch-card";
-import { PostPreviewCard } from "@/components/cards/post-preview-card";
-import { SectionHeader } from "@/components/ui/section-header";
-import { featuredEvents, merchandiseProducts, communityPosts } from "@/constants/placeholder-data";
+import { EventCarousel } from "@/components/home/event-carousel";
+import { WeekdayTabs } from "@/components/home/weekday-tabs";
 
 export default function HomePage() {
   return (
-    <div>
-      <section className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <div className="max-w-3xl">
-          <p className="mb-4 inline-flex rounded-full border border-fuchsia-400/30 bg-fuchsia-400/10 px-4 py-2 text-sm font-semibold text-fuchsia-100">
-            Concerts, parties, games, and city nights
-          </p>
-          <h1 className="text-4xl font-black tracking-tight text-white sm:text-6xl">
-            Build your night around the best events in the city.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-            NightEvents is the foundation for discovering nightlife experiences, buying tickets, shopping merch, and staying connected after the event.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Link className="rounded-full bg-fuchsia-500 px-6 py-3 text-center font-bold text-white shadow-lg shadow-fuchsia-500/25 transition hover:bg-fuchsia-400" href="/events">
-              Browse Events
-            </Link>
-            <Link className="rounded-full border border-white/15 px-6 py-3 text-center font-bold text-white transition hover:border-white/35 hover:bg-white/10" href="/community">
-              Join Community
-            </Link>
+    <div className="relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_15%_15%,rgba(217,70,239,0.25),transparent_30%),radial-gradient(circle_at_82%_18%,rgba(34,211,238,0.2),transparent_34%),linear-gradient(180deg,#020617_0%,#09090b_48%,#000_100%)]" />
+      <section className="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl gap-8 px-4 py-10 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8 lg:py-14">
+        <aside className="order-2 rounded-[2rem] border border-fuchsia-300/20 bg-black/50 p-4 shadow-[0_0_60px_rgba(217,70,239,0.12)] backdrop-blur lg:order-1">
+          <div className="mb-5 rounded-3xl border border-white/10 bg-white/[0.04] p-5">
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-cyan-200">Weekly Lineup</p>
+            <h2 className="mt-2 text-3xl font-black uppercase text-white">Hover a day</h2>
+            <p className="mt-2 text-sm leading-6 text-zinc-300">Each tab expands in place to reveal the night&apos;s event and time.</p>
           </div>
-        </div>
-      </section>
+          <WeekdayTabs />
+        </aside>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow="Upcoming" title="Featured events" description="Placeholder event data keeps the foundation visible while Supabase integration is added later." actionHref="/events" actionLabel="View all" />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {featuredEvents.slice(0, 3).map((event) => (
-            <EventCard event={event} key={event.id} />
-          ))}
-        </div>
-      </section>
+        <div className="order-1 space-y-8 lg:order-2">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.04] p-6 shadow-[0_0_90px_rgba(34,211,238,0.12)] backdrop-blur sm:p-8">
+            <div className="absolute -right-20 -top-20 size-56 rounded-full bg-fuchsia-500/20 blur-3xl" />
+            <div className="absolute -bottom-28 left-20 size-64 rounded-full bg-cyan-400/15 blur-3xl" />
+            <div className="relative flex flex-col items-center text-center">
+              <img className="size-32 rounded-full border-4 border-yellow-200/70 object-cover shadow-[0_0_55px_rgba(250,204,21,0.45)] sm:size-40" src="/images/logo.jpg" alt="Night Events smiley logo" />
+              <p className="mt-6 text-sm font-black uppercase tracking-[0.45em] text-fuchsia-200">Nightclub Events Template</p>
+              <h1 className="mt-4 max-w-4xl text-5xl font-black uppercase leading-none tracking-tight text-white sm:text-7xl lg:text-8xl">
+                Mystery Madness
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-300 sm:text-lg">
+                Weekly nightlife, private functions, merch drops, and unforgettable past-event moments in one polished frontend showcase.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Link className="rounded-full bg-fuchsia-500 px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-white shadow-[0_0_32px_rgba(217,70,239,0.45)] transition hover:-translate-y-1 hover:bg-fuchsia-400" href="/events">
+                  See Events
+                </Link>
+                <Link className="rounded-full border border-cyan-300/50 px-7 py-4 text-sm font-black uppercase tracking-[0.18em] text-cyan-100 transition hover:-translate-y-1 hover:bg-cyan-300/10 hover:shadow-[0_0_28px_rgba(34,211,238,0.25)]" href="/corporate-functions">
+                  Book Function
+                </Link>
+              </div>
+            </div>
+          </div>
 
-      <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow="Merch" title="Premium drops" description="Starter shop cards are ready for future Stripe or Yoco checkout flows." actionHref="/shop" actionLabel="Shop merch" />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {merchandiseProducts.slice(0, 3).map((product) => (
-            <MerchCard product={product} key={product.id} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-4 py-10 pb-20 sm:px-6 lg:px-8">
-        <SectionHeader eyebrow="Afterparty" title="Community previews" description="A future space for attendees to share memories, reviews, clips, and recommendations." actionHref="/community" actionLabel="Open community" />
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {communityPosts.map((post) => (
-            <PostPreviewCard post={post} key={post.id} />
-          ))}
+          <EventCarousel />
         </div>
       </section>
     </div>

@@ -4,8 +4,8 @@ import { Navbar } from "@/components/layout/navbar";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "NightEvents | City Nights, Premium Experiences",
-  description: "A nightlife and city events platform foundation built with Next.js, Supabase, and Tailwind CSS.",
+  title: "Mystery Madness | Night Events",
+  description: "A nightclub-themed event landing template for weekly parties, functions, merch, and social nights.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
